@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hit mosquito Game</h1>
+    <div class="playground">
+        <img class="mosquito" id="mosquito" onclick="hitMosquito()" src="/Capture.PNG">
+    </div>
+
+    <div class="controls">
+        <h3>
+            <span>Total:</span>
+            <span id="totalHit"></span>
+        </h3>
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <script>
+        let hitCount = 0;
+        let isGameStart = false
+       function startGame(){
+        hitCount = 0 ;
+        isGameStart = true
+        let mosquito = document.getElementById("mosquito");
+        let time = setInterval(() => {
+            let i = Math.floor(Math.random()*1200)+1;
+            let j = Math.floor(Math.random()*500)+1;
+            mosquito.style.left = i+"px"
+            mosquito.style.top = j+"px"
+        },1500)
+        setTimeout(() => {
+            clearTimeout(time);
+            isGameStart = false
+            
+        }, 30000)
+       }
+       function hitMosquito(){
+        if(isGameStart){
+            hitCount++;
+            document.getElementById("totalHit").innerText = hitCount;
+        }
+        
+       }
+    </script>
+</body>
+</html>
